@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extractor de Imágenes PDF</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* Estilos personalizados */
+        #drop-zone {
+            border: 2px dashed #0d6efd;
+            border-radius: .375rem;
+            padding: 60px; /* Mantenemos el padding aumentado */
+            cursor: pointer;
+            background-color: #f8f9fa;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+        #drop-zone.hover { background-color: #e2e6ea; border-color: #0a58ca; }
+        #drop-zone p { margin-bottom: 0; color: #6c757d; }
+        #image-container .img-thumbnail { max-height: 200px; object-fit: contain; margin-bottom: 1rem; }
+        #image-container .card { height: 100%; }
+        #image-container .card-body { display: flex; flex-direction: column; justify-content: space-between; }
+        #image-container .btn { margin-top: auto; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Extractor de Imágenes de Archivos PDF</h1>
+
+        <!-- Zona para arrastrar y soltar / seleccionar archivo -->
+        <div id="drop-zone" class="text-center">
+            <p>Arrastra y suelta un archivo PDF aquí, o haz clic para seleccionar uno.</p>
+            <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+        </div>
+
+        <!-- Área de estado/feedback -->
+        <div id="status" class="mt-3"></div>
+
+        <!-- Botón Descargar Todas -->
+        <div class="text-center mt-3 mb-3">
+             <button id="downloadAllBtn" class="btn btn-success" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-zip-fill" viewBox="0 0 16 16">
+                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                  <path d="M.5 2.5A1.5 1.5 0 0 1 2 1h8.5L14 4.5V7a.5.5 0 0 1-1 0V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H2A1.5 1.5 0 0 0 .5 2.5m3 4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5M6 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                Descargar Todas (.zip)
+             </button>
+        </div>
+
+        <!-- Contenedor para mostrar las imágenes -->
+        <div id="image-container" class="row mt-4 g-3">
+            <!-- Las imágenes extraídas se insertarán aquí -->
+        </div>
+    </div>
+
+    <!-- Scripts (Bootstrap, PDF.js, JSZip, FileSaver) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.mjs" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+            integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- CORREGIDO: Hash de integridad correcto para FileSaver.js 2.0.5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+            integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Tu script personalizado (sigue siendo módulo) -->
+    <script src="script.js" type="module"></script>
+
+</body>
+</html>
